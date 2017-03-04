@@ -14,6 +14,15 @@
 
 1. [神经网络与深度学习](https://nndl.github.io/)
 
+## 中文社区
+1. [tensorfly](http://www.tensorfly.cn/)
+
+## 示例
+1. [colornet](https://github.com/pavelgonchar/colornet)给黑白照片上彩色
+2. [neural-style-tf](https://github.com/cysmith/neural-style-tf) 生成风格照片
+2. [neural-style](https://github.com/anishathalye/neural-style) 也是生成风格图片，使用预告训练的[数据集](http://www.vlfeat.org/matconvnet/models/beta16/imagenet-vgg-verydeep-19.mat)
+3. [show-attend-and-tell-tensorflow](https://github.com/yunjey/show-attend-and-tell-tensorflow) 用文字描述图片
+4. [dtn](https://github.com/yunjey/dtn-tensorflow) 将头像生成漫画
 ## 视频教程
 
 1. [Andrew Ng 机器学习](https://www.coursera.org/learn/machine-learning) 带中文字幕
