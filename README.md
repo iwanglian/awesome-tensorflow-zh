@@ -28,6 +28,9 @@
 6. [Weakly_detector](https://github.com/jazzsaxmafia/Weakly_detector)
 7. [DeepOSM](https://github.com/trailbehind/DeepOSM) 卫星地图中识别道路
 8. [darkflow](https://github.com/thtrieu/darkflow) 实时物体识别
+9. [Self-Driving-Car](https://github.com/RyanZotti/Self-Driving-Car) 自动驾驶玩具车
+10. [PaintsChainer](https://github.com/pfnet/PaintsChainer) 给素描上色
+11. [magenta](https://github.com/tensorflow/magenta) 生成音乐
 ## 视频教程
 
 1. [Andrew Ng 机器学习](https://www.coursera.org/learn/machine-learning) 带中文字幕
