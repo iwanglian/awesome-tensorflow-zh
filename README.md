@@ -22,7 +22,12 @@
 2. [neural-style-tf](https://github.com/cysmith/neural-style-tf) 生成风格照片
 2. [neural-style](https://github.com/anishathalye/neural-style) 也是生成风格图片，使用预告训练的[数据集](http://www.vlfeat.org/matconvnet/models/beta16/imagenet-vgg-verydeep-19.mat)
 3. [show-attend-and-tell-tensorflow](https://github.com/yunjey/show-attend-and-tell-tensorflow) 用文字描述图片
+3. [show_attend_and_tell.tensorflow](https://github.com/jazzsaxmafia/show_attend_and_tell.tensorflow)
 4. [dtn](https://github.com/yunjey/dtn-tensorflow) 将头像生成漫画
+5. [write-rnn-tensorflow](https://github.com/hardmaru/write-rnn-tensorflow)手写体
+6. [Weakly_detector](https://github.com/jazzsaxmafia/Weakly_detector)
+7. [DeepOSM](https://github.com/trailbehind/DeepOSM) 卫星地图中识别道路
+8. [darkflow](https://github.com/thtrieu/darkflow) 实时物体识别
 ## 视频教程
 
 1. [Andrew Ng 机器学习](https://www.coursera.org/learn/machine-learning) 带中文字幕
