@@ -165,10 +165,11 @@ App经常会内嵌 WebView, 这时需要将 WebDriver 切换 到 webview 的 con
 
 
 参考网站：
-[appium官网](http://appium.io/)
-[appium github](https://github.com/appium/appium)
-[appium-python-client](https://github.com/appium/python-client)
-[api总结](http://www.cnblogs.com/psklf/p/5368828.html)
+
+* [appium官网](http://appium.io/)
+* [appium github](https://github.com/appium/appium)
+* [appium-python-client](https://github.com/appium/python-client)
+* [api总结](http://www.cnblogs.com/psklf/p/5368828.html)
 
 
 
