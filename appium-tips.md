@@ -75,3 +75,64 @@ webdriver初始化时，必须填上正确的值。几个需要注意的：
 启动时使用的端口号，与appium执行的 -p 端口号一致即可。
 
 这样就可以一台pc开多个appium, 指定不同的端口（-p 和 -bp都要不同），然后连接多台手机。
+初始化完成后，通过 implicitly_wait 方法指定 查找的隐性等待时间。
+
+### WebDriver
+这是脚本中最常用的对象，用于操作整个页面。
+
+#### Android
+对于native页面，使用 Android Sdk 里带的 uiautomatorviewer 工具查看，在截图里点击元素，就会显示其 NodeInfo,然后通过这个信息来查找元素。
+* find_element_by_id                      通过 resource-id 来查找，会阻塞住不断重试，直到超时或找到一个
+* find_elements_by_id                     找出所有符合 resource-id的元素，立即返回，需要自己用sleep控制页面加载时间
+* find_element_by_accessibility_id        通过 content-desc 查找
+* find_elements_by_class_name             通过 class 查找
+* find_element_by_android_uiautomator     通过 Android UIAutomator 的 selector来查找，例如 "new UiSelector().text(\"订阅号\")"
+
+打到元素后，就可以通过元素的 click()方法来点击； send_keys方法来输入文字
+
+这里有几个关注点
+1. find_element 超时没找到时，会 raise NoSuchElementException, 可以捕获该异常来判断元素是否存在
+2. 判断元素是否存在，另一个方法是使用 find_elements_* , 再判断其 len
+3. 对于很靠下，不在当前屏幕的元素，通过 find_element* 不能直接找到，需要 find_element_by_android_uiautomator("new UiScrollable(new UiSelector()).scrollIntoView(new UiSelector().text(\"文本\"))")， 这样会滑到界面
+4. resource-id 是 Android在编译资源文件时生成的，所以每个新版本，相同位置元素的 resource-id 的值可能会变化；尽量采用 text 等别的固定不变的元素；关闭升级
+5. 在升级提示、输入法提示、登录提示这种会打断自动运行，需要提前手动处理好，或者在固定场景下写异常逻辑
+6. 在手动逻辑中，有些搜索没有按钮，而是通过输入法键盘右下角的`搜索`来触发，这时需要先 activate_ime_engine ，打开其它输入法，调出软键盘,然后通过坐标点击
+
+```
+                dr.activate_ime_engine(imes[0])
+                el.click()
+                size = dr.get_window_size()
+                dr.tap([(size['width'] * 0.95, size['height'] * 0.95)])
+                dr.activate_ime_engine(u'io.appium.android.ime/.UnicodeIME')
+                
+ ```
+
+#### WebView
+App经常会内嵌 WebView, 这时需要将 WebDriver 切换 到 webview 的 context, 才能操作 webview。
+
+> **注意** 
+>
+> 有些App使用自研的 webview, 比如 x5内核。这时需要切换到系统webview, 才能被 webdriver操作。
+>
+> 在 App里打开网页 http://debugx5.qq.com  (要带上 http://),在 信息 一栏中，打开使用 inspect 调试的选项
+>
+
+
+
+
+将手机联到电脑，在chrome中访问  chrome://inspect , 就可以看到手机中打开的页面， 从这里查看元素的属性。
+
+常用的查找方法
+* find_elements_by_class_name
+* find_element_by_id
+
+
+
+还可以拿到网页的url和html源码。
+在mac和linux环境下，webDriver.page_source得到的源码，是经过js执行后的。
+
+
+
+要注意的点
+1. 找到的元素的坐标跟实际不一致，其 click() 无效
+
