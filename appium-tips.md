@@ -97,7 +97,7 @@ webdriver初始化时，必须填上正确的值。几个需要注意的：
 4. resource-id 是 Android在编译资源文件时生成的，所以每个新版本，相同位置元素的 resource-id 的值可能会变化；尽量采用 text 等别的固定不变的元素；关闭升级
 5. 在升级提示、输入法提示、登录提示这种会打断自动运行，需要提前手动处理好，或者在固定场景下写异常逻辑
 6. 在手动逻辑中，有些搜索没有按钮，而是通过输入法键盘右下角的`搜索`来触发，这时需要先 activate_ime_engine ，打开其它输入法，调出软键盘,然后通过坐标点击
-
+7. 遇到异常时，尽量保留日志和手机截图，使用 get_screenshot_as_file 方法
 ```
                 dr.activate_ime_engine(imes[0])
                 el.click()
@@ -119,12 +119,12 @@ App经常会内嵌 WebView, 这时需要将 WebDriver 切换 到 webview 的 con
 
 
 
-
 将手机联到电脑，在chrome中访问  chrome://inspect , 就可以看到手机中打开的页面， 从这里查看元素的属性。
 
 常用的查找方法
 * find_elements_by_class_name
 * find_element_by_id
+* find_element_by_xpath             执行复杂的查询
 
 
 
@@ -137,6 +137,42 @@ App经常会内嵌 WebView, 这时需要将 WebDriver 切换 到 webview 的 con
 1. 找到的元素的坐标跟实际不一致，其 click() 无效
 2. 每个手机的坐标都可能不一样
 3. 坐标信息，可以通过 手机 设置->开发者选项->指针位置 打开。部分机型需要重启生效
+
+
+
+#### 跳转
+
+尽量使用元素的click行为。最后方案是选择 webDriver.tap 坐标点。
+每一轮执行后，请返回首页，从头开始操作。中间状态都难以预测。
+
+1. 在各种 Exception 被捕获到时，也需要返回到首页
+1. 使用 driver.startActivity 来重新打开，这个耗时较多，但更安全
+2. 模拟 返回按键，直到首页。这个不用重新打开首页，速度很快。
+
+
+```
+        while dr.current_activity != '.ui.LauncherUI':
+            dr.press_keycode(4)
+            sleep(1)
+```
+
+### 附加功能
+1. 安装和卸载应用，重置应用。
+2. 设置手机的联网方式
+3. 设置手机的gps坐标
+4. 从设备上传和下载文件
+
+
+
+参考网站：
+[appium官网](http://appium.io/)
+[appium github](https://github.com/appium/appium)
+[appium-python-client](https://github.com/appium/python-client)
+[api总结](http://www.cnblogs.com/psklf/p/5368828.html)
+
+
+
+
 
 
 
