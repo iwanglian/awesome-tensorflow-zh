@@ -162,9 +162,11 @@ App经常会内嵌 WebView, 这时需要将 WebDriver 切换 到 webview 的 con
 3. 设置手机的gps坐标
 4. 从设备上传和下载文件
 
-
-
-参考网站：
+### 同时运行多个设备
+1. 在文档里支持多个设备，但实际使用 Linux 跑两个设备时就会adb经常重启导致失败
+2. [issue](https://github.com/appium/appium/issues/3592)里建议端口号间隔10以上
+3. 还可以写监控脚本，在失败时，重启所有程序
+**参考网站**
 
 * [appium官网](http://appium.io/)
 * [appium github](https://github.com/appium/appium)
