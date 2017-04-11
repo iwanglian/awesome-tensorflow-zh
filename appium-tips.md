@@ -166,6 +166,19 @@ App经常会内嵌 WebView, 这时需要将 WebDriver 切换 到 webview 的 con
 1. 在文档里支持多个设备，但实际使用 Linux 跑两个设备时就会adb经常重启导致失败
 2. [issue](https://github.com/appium/appium/issues/3592)里建议端口号间隔10以上
 3. 还可以写监控脚本，在失败时，重启所有程序
+
+
+tips:
+1. 由于appium、python-client依赖众多，接口很容易不兼容，总是难以定位。
+
+```
+WebDriverException: Message: Parameters were incorrect. We wanted {"required":["value"]} and you sent ["text","sessionId","id","value"]
+#产生原因是 ， selenium 的版本 3.3.3过高，用pip降级到 3.3.1 即可
+
+
+提示  chrome版本应该>55, 但实际 chrome版本已经是57
+#产生原因，  最新appium@1.6.4带的chromedriver2.28在 linux系统找到不到chrome, 降级到 2.25即appium@1.6.3即可
+```
 **参考网站**
 
 * [appium官网](http://appium.io/)
